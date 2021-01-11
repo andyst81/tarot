@@ -2,12 +2,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Layout from '../components/MyLayout';
 
-class Index extends React.Component {
-  constructor(props) {
-    this.state = {
-      showCard: false
-    }
-
+export default function Index() {
     function fetcher(url) {
       return fetch(url).then(r => r.json());
     }
@@ -52,9 +47,8 @@ class Index extends React.Component {
     for (var q in questions) {
       questionList.push(<li key={q}>{questions[q]}</li>)
     }
-  }
 
-  render () {
+  return(
     <Layout>
       <div className="container">
         <main className="">
@@ -63,7 +57,7 @@ class Index extends React.Component {
           <h5 style={{textAlign:"center"}}>An interpretation of the meaning of the card will appear below it.</h5>
           <button style={{display: "flex", margin:"auto", alignItems:"center", justifyContent:"center"}}className="button">Show Card</button>
           <br/>
-          <div {this.state.showCard ? style={{display: 'block'}} : style={{display:'none'}}}>
+          <div style={{display: 'block'}}>
             <img style={{display: "flex", margin:"auto", alignItems:"center", justifyContent:"center"}} src={image} />
             <div style={{textAlign:"center"}}><h1>{number}</h1></div>
             <div style={{textAlign:"center"}}><h2>{name}</h2></div>
@@ -80,7 +74,6 @@ class Index extends React.Component {
         </main>
       </div>
     </Layout>
-  };
+  )
 }
 
-export default Index
